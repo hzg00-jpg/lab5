@@ -18,8 +18,8 @@ public class SortTimer {
 	 */
 	public static void main(String[] args){
 		ArrayList<Sorter<Integer>> sorters = new ArrayList<Sorter<Integer>>();
-		sorters.add(new SelectionSort<Integer>());
-		sorters.add(new InsertionSort<Integer>());
+		// sorters.add(new SelectionSort<Integer>());
+		// sorters.add(new InsertionSort<Integer>());
 		sorters.add(new MergeSort<Integer>());
 		sorters.add(new Quicksort<Integer>());
 		
@@ -33,6 +33,9 @@ public class SortTimer {
 		}
 		
 		SortTimer timer = new SortTimer();
+		timer.printTimes(sorters, sizes);
+		timer.printTimes(sorters, sizes);
+		timer.printTimes(sorters, sizes);
 		timer.printTimes(sorters, sizes);
 		timer.printTimes(sorters, sizes);
 	}
@@ -59,14 +62,17 @@ public class SortTimer {
         for( Integer size: sizes ){
         	System.out.printf("%8d", size);
         		
+			ArrayList<Integer> data = getRandom(size);
         	for( Sorter<Integer> s: sorters){
-			// TODO: Is this a fair way to compare the different algorithms?
-			// TODO: How can we improve the comparison?
-        		ArrayList<Integer> data = getRandom(size);
+			// Is this a fair way to compare the different algorithms? No. This is too random, some algorithms
+			// can have shorter run times because it gets lucky ones that are already close to sorted.
+			// How can we improve the comparison? We want to compare the different algorithms given 
+			// the same data set. Thus, copy a randomly generated one and make all the algorithms run it.
+				ArrayList<Integer> copy = new ArrayList<>(data);
         		
-        		System.out.printf(" | %15f", time(s, data)*1000);
+        		System.out.printf(" | %15f", time(s, copy)*1000);
         		
-        		if( !isSorted(data) ){
+        		if( !isSorted(copy) ){
         			System.err.println("Data wasn't sorted correctly by: " + s.getClass().toString());
         		}
         	}

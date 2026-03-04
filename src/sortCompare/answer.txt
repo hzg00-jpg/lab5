@@ -1,0 +1,49 @@
+1. The different answers obtained for small values of size are due to the fact that the sets are randomly generated
+and we can get lucky sometimes. The 2nd run has greater size but somehow runs faster, which doesn't make sense.
+Smaller sizes are more prone to luck, which means that an unlucky run can make the first run slower than it 
+should be.
+
+2. 
+Selection sort is O(n^2). For every double in input, it is approximately (inconsistently) 4x slower. 
+4 = 2^2, so the running time is O(n^2). The inconsistency tells me that its best case scenario is probably 
+less, such as O(n), and its worst case is O(n^2).
+
+Insertion sort is O(n^2). For every double in input, it is approximately 4x slower. 4 = 2^2, 
+so the running time is O(n^2). This is pretty consistent throughout, which tells me that its best 
+and worst case scenario is probably pretty close to O(n^2). 
+
+Merge sort is O(n logn). For every double in input, it's approximately 2.3x slower. 
+This corresponds to O(n log n) on the chart. 
+
+Quick sort is O(n logn). For every double in input, it's approximately 2x slower. 
+This corresponds to O(n log n) on the chart. Quick sort has moments where doubling the size makes it run
+less than 2x slower, which tells me that its best case run time is probably lower, at O(n), bringing
+the average down.
+
+3. 
+Merge sort:
+1000: 0 - 3s
+2000: 0 - 2s
+4000: 0 - 4s
+8000: 1 - 3s
+16000: 3 - 4s
+32000: 8 - 11s
+64000: 16- 21s
+128000: 34 - 54s
+256000: 82 - 107s
+512000: 211 - 254s
+
+Quick sort:
+1000: 0 - 3s
+2000: 0 - 1s
+4000: 0 - 1s
+8000: 1 - 2s
+16000: 1 - 2s
+32000: 3 - 6s
+64000: 9 - 12s
+128000: 20 - 53s
+256000: 44 - 60s
+512000: 127 - 175s
+
+These ranges tell me that there is still a bit of luck involved in the run times, but it compares the algorithms 
+relatively well because every algorithm is being put against the same data set.
